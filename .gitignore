@@ -8,7 +8,6 @@ JDBC/.metadata
 ### Eclipse ###
 .metadata
 bin/
-webapp/
 tmp/
 *.tmp
 *.bak
