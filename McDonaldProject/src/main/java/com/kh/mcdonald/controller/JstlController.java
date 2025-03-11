@@ -41,16 +41,3 @@ public class JstlController extends HttpServlet {
 	}
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
