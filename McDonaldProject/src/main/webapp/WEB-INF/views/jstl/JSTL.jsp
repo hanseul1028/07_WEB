@@ -110,6 +110,54 @@
 	</c:forEach>
 	</ul>
 	
+	<hr>
+	
+	<h3>회원목록</h3>
+
+	<!-- 
+		caption
+		thead, tbody, tfoot
+		tr
+		th, td
+	 -->
+
+	<table>
+		<thead>
+			<tr>
+				<th>번호</th>
+				<th>이름</th>
+				<th>아이디</th>
+				<th>가입일</th>
+			</tr>
+		</thead>
+		
+		<tbody>
+								<!-- 조회 결과가 있는가 없는가 -->
+								<!-- 조건식 만들 때 필요한 것 : 
+									 최소 한 개 이상의 값 -->
+			
+			<c:choose>
+				<c:when test="${empty requestScope.users }">
+					
+					<tr>
+						<td colspan ="4">조회 결과가 존재하지 않습니다.</td> 
+					</tr>
+				</c:when>
+				<c:otherwise>
+					<c:forEach items="${ requestScope.users }" var="user">
+						<tr>
+							<td>${ user.userNo }</td>
+							<td>${ user.userId }</td>
+							<td>${ user.userName }</td>
+							<td>${ user.enrollDate }</td>
+						</tr>
+					</c:forEach>
+				</c:otherwise>
+			</c:choose>
+					
+		</tbody>
+	</table>
+	
 </body>
 </html>
 

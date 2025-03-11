@@ -1,11 +1,16 @@
 package com.kh.mcdonald.controller;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.kh.mcdonald.model.dto.UserDTO;
+import com.kh.mcdonald.model.service.UserService;
 
 @WebServlet("/jstl")
 public class JstlController extends HttpServlet {
@@ -23,6 +28,11 @@ public class JstlController extends HttpServlet {
 		String[] colors = {"red", "orangered", "orange", "yellow", "yellowgreen", "greenyellow", "green"};
 		request.setAttribute("colors", colors);
 		
+		//TB_USER 가지고 할 것
+		List<UserDTO> list = new UserService().findAll();
+		
+		request.setAttribute("users", list);
+		request.setAttribute("msg", "리스트가 null이 아니면 조회성공이라고 보내고 싶음");
 		request.getRequestDispatcher("/WEB-INF/views/jstl/JSTL.jsp").forward(request, response);
 	}
 
@@ -31,3 +41,16 @@ public class JstlController extends HttpServlet {
 	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
