@@ -17,8 +17,20 @@ public class MemberService {
 		 * => 서비스단에서 유효성검사하기 (Validation)
 		 */
 		MemberDTO loginMember = new MemberDAO().login(member);
-		
 		return loginMember;
+		
+	}
+	
+	public int signUp(MemberDTO member) {
+		
+		int result = new MemberDAO().checkId(member.getMemberId());
+		
+		if(result > 0 ) {
+			return result;
+		}
+		
+		new MemberDAO().signUp(member);
+		return result;
 	}
 	
 }
