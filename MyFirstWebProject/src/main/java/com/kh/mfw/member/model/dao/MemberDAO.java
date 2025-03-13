@@ -66,6 +66,8 @@ public class MemberDAO {
 						rset.getDate("ENROLL_DATE")
 					);
 			
+			// 조회내용 값을 컬럼에 담는 과정 : 매핑(mapping)
+			
 			// 지역변수의 생명주기 : BlockScope
 		}
 		
