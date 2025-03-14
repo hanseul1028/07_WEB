@@ -11,23 +11,34 @@
 <!-- namespace : 해당 mapper 만을 식별하기 위한 고유한 별칭 -->
 
 	<!-- 
-		* <select>
+		* <select>   
 		앞에서는 JDBC 객체를 사용해서 영속성 작업을 하기 위해서
 		pstmt 객체에 sql 문을 전달하여 위치홀더를 코드상에서 채워줬지만
 		Mybatis 를 이용하면 위치홀더 대싱 해당 SQL문에 전달된 객체로부터 값을 꺼내서 사용
 	
+	
+		#{필드명} => getter메소드 호출
+		
+		<select id="각 SQL문의 식별자"
+				parameterType="SQL문을 실행할 때 필요한 자바타입(클래스명) 혹은 별칭(생략 가능)"
+				resultType="조회결과를 반환하는 자바 타입"
+				또는 
+				resultMap="조회결과를 뽑아서 매핑할 resultMap의 id"
+				>
+			SELECT문 
+		</select>
 	 -->
-
+	 
 
 	<!-- select 문을 호출할 메서드명과 동일하게 -->
-	<select id="login" 
+	<select id="login"
 			parameterType="com.kh.mfw.member.model.dto.MemberDTO"
 			resultType="com.kh.mfw.member.model.dto.MemberDTO"> 
 		 SELECT
 		 	MEMBER_ID memberId
 		   ,MEMBER_PW memberPw
 		   ,MEMBER_NAME memberName
-		   ,EMAIL 
+		   ,EMAIL    
 		   ,ENROLL_DATE enrollDate
 		 FROM
 		 	KH_MEMBER
@@ -39,7 +50,45 @@
 		 <!-- #{} : JDBC에서 pstmt.setString이 대체된 것임 -->
 		 	
 	</select>
-
-
+	
+	<select id="checkId"
+					parameterType="string"
+					resultType="_int">
+		SELECT 
+			COUNT(*)
+		FROM
+			KH_MEMBER
+		WHERE
+			MEMBER_ID = #{ memberId }
+	
+	</select>
+	
+	<insert id="signUp"
+					parameterType="memberDTO">
+			INSERT
+				INTO
+					KH_MEMBER
+			VALUES
+					(
+					  #{ memberId }
+					, #{ memberPw }
+					, #{ memberName }
+					, #{ email }
+					, DEFAULT
+					)
+	</insert>
 
 </mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+

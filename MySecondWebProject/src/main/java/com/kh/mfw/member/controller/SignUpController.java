@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.kh.mfw.member.model.dto.MemberDTO;
 import com.kh.mfw.member.model.service.MemberService;
@@ -33,7 +34,7 @@ public class SignUpController extends HttpServlet {
 		String email = request.getParameter("email");
 		
 		MemberDTO member = new MemberDTO(memberId, memberPw, memberName, email, null);
-		// 여기까치가 요청처리를 위해서 필요한 값들을 처리하는 과정임
+		// 여기까가 요청처리를 위해서 필요한 값들을 처리하는 과정임
 		
 		int result = new MemberService().signUp(member);
 		
@@ -57,11 +58,26 @@ public class SignUpController extends HttpServlet {
 		// 변수를 사용해서 중복을 제거한 것
 		*/		
 		
+		// "중복된 아이디가 존재합니다. 다른 아이디를 입력해주세요."
+		// 얘를 jsp로 보내야함
+		// request.setAttribute("message", "중복된 아이디가 존재합니다. 다른 아이디를 입력해주세요.");
+
+		if(result == 0 ) {
+			request.getSession().setAttribute("message", "중복된 아이디가 존재합니다. 다른 아이디를 입력해주세요.");
+		}
 		response.sendRedirect(result != 0 ? path + "/join" : path);
 	}
+	
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}
 
 }
+
+
+
+
+
+
+
