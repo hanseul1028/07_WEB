@@ -38,6 +38,9 @@
 		</environment>
 	 </environments>
 
+	<mappers>
+		<mapper resource="/mappers/member-mapper.xml"/>
+	</mappers>
 
 
 </configuration>  

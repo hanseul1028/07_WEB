@@ -35,7 +35,8 @@ public class SignUpController extends HttpServlet {
 		MemberDTO member = new MemberDTO(memberId, memberPw, memberName, email, null);
 		// 여기까치가 요청처리를 위해서 필요한 값들을 처리하는 과정임
 		
-		int result = new MemberService().signUp(member);
+		int result = 0;
+		// new MemberService().signUp(member);
 		
 		String path = request.getContextPath();
 		/*if(result != 0) {
