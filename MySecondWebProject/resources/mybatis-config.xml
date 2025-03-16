@@ -31,7 +31,7 @@
 				  POOLED : 나 쓸거임
 				  UNPOOLED : 안 쓸거임
 				  
-				  보편적으로는 사용함  
+				  보편적으로는 사용함 
 			 -->
 			
 			<dataSource type ="POOLED">
@@ -50,17 +50,3 @@
   
 
 </configuration>  
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
